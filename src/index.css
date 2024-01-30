@@ -1,13 +1,37 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* width */
+::-webkit-scrollbar,
+.menubar-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track,
+.menubar-scrollbar::-webkit-scrollbar-track {
+  @apply bg-[#0a0a0a];
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb,
+.menubar-scrollbar::-webkit-scrollbar-thumbr {
+  @apply bg-[#141414];
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover,
+.menubar-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#1e1e1e];
+}
+
+body {
+  @apply bg-[#0a0a0a];
 }
