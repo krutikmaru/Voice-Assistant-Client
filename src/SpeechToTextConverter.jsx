@@ -5,6 +5,8 @@ const SpeechToTextConverter = ({
   setIsCapturing,
   capturedText,
   setCapturedText,
+  isRequesting,
+  sendPrompt,
 }) => {
   const [interimResults, setInterimResults] = useState("");
   const [speechRecognizer, setSpeechRecognizer] = useState(null);
@@ -64,34 +66,38 @@ const SpeechToTextConverter = ({
   return (
     <div className="flex flex-col justify-center items-center space-y-4">
       <div>
-        <span className="text-gray-500">{interimResults}</span>
-        <span className="text-white">{capturedText}</span>
+        <span className="text-[#4e4e4e]">{interimResults}</span>
+        <span className="text-green-primary">{capturedText}</span>
       </div>
-      <div className="flex space-x-4">
-        {!isCapturing ? (
-          <button
-            onClick={startConverting}
-            className="w-24 py-1 px-4 rounded-md bg-green-primary text-black-main text-sm font-semibold"
-          >
-            Capture
-          </button>
-        ) : (
-          <button
-            onClick={stopConverting}
-            className="w-24 py-1 px-4 rounded-md bg-green-primary text-black-main text-sm font-semibold"
-          >
-            Stop
-          </button>
-        )}
-        {!isCapturing && capturedText && (
-          <button
-            onClick={stopConverting}
-            className="w-24 py-1 px-4 rounded-md bg-green-primary text-black-main text-sm font-semibold"
-          >
-            Send
-          </button>
-        )}
-      </div>
+      {isRequesting ? (
+        <h1 className="text-green-primary">Asking...</h1>
+      ) : (
+        <div className="flex space-x-4">
+          {!isCapturing ? (
+            <button
+              onClick={startConverting}
+              className="w-32 py-1 px-4 rounded-md bg-green-primary text-black-main text-sm font-semibold"
+            >
+              Capture 🎙️
+            </button>
+          ) : (
+            <button
+              onClick={stopConverting}
+              className="w-32 py-1 px-4 rounded-md bg-green-primary text-black-main text-sm font-semibold"
+            >
+              Stop ⏹️
+            </button>
+          )}
+          {!isCapturing && capturedText && (
+            <button
+              onClick={sendPrompt}
+              className="w-32 py-1 px-4 rounded-md bg-green-primary text-black-main text-sm font-semibold"
+            >
+              Ask ↗️
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };
