@@ -6,6 +6,7 @@ import { getCityAndCountry } from "./utils/getCityAndCountry";
 import { getDeviceType } from "./utils/getDeviceType";
 import { getOperatingSystem } from "./utils/getOperatingSystem";
 import { getBrowser } from "./utils/getBrowser";
+import { getCurrentDatetime } from "./utils/getDateTime";
 
 const VoiceAssistant = () => {
   const [isCapturing, setIsCapturing] = useState(false);
@@ -58,6 +59,7 @@ const VoiceAssistant = () => {
       timestamp: new Date(),
       location,
       deviceInfo,
+      datetime: getCurrentDatetime(),
     };
     console.log(res);
     setResponse(res.response);
