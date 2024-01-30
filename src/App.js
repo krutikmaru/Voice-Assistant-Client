@@ -1,5 +1,7 @@
+import VoiceAssistant from "./VoiceAssistant";
+
 function App() {
-  return <h1 className="text-green-primary">Voice Assistant</h1>;
+  return <VoiceAssistant />;
 }
 
 export default App;
