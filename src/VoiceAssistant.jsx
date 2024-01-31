@@ -7,6 +7,7 @@ import { getDeviceType } from "./utils/getDeviceType";
 import { getOperatingSystem } from "./utils/getOperatingSystem";
 import { getBrowser } from "./utils/getBrowser";
 import { getCurrentDatetime } from "./utils/getDateTime";
+import axios from "axios";
 
 const VoiceAssistant = () => {
   const [isCapturing, setIsCapturing] = useState(false);
@@ -52,7 +53,7 @@ const VoiceAssistant = () => {
       operatingSystem: getOperatingSystem(),
       browser: getBrowser(),
     };
-    const res = {
+    const data = {
       prompt: capturedText,
       response: randomResponse,
       category: randomCategory,
@@ -61,8 +62,12 @@ const VoiceAssistant = () => {
       deviceInfo,
       datetime: getCurrentDatetime(),
     };
-    console.log(res);
-    setResponse(res.response);
+    const res = await axios.post(
+      "http://localhost:5000/storeInteraction",
+      data
+    );
+    console.log(res.data);
+    setResponse(randomResponse);
     setIsRequesting(false);
   };
   return (
